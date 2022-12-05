@@ -1,0 +1,18 @@
+{
+    "env":"debug",
+    "service":{
+        "port":"8080"
+    },
+    "database":{
+        "host":"localhost",
+        "port":"5432",
+        "username":"postgres",
+        "password":"password",
+        "database":"db_test"
+    },
+    "redis":{
+        "host":"localhost",
+        "port":"6379",
+        "password":""
+    }
+}
