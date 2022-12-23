@@ -1,15 +1,15 @@
 package repos
 
 import (
-	"go-best-practice/src/models/dto"
-	"go-best-practice/src/models/entity"
+	"go-best-practice/internal/entity"
+	"go-best-practice/internal/request"
 
 	"gorm.io/gorm"
 )
 
 type IBookRepo interface {
 	GetAll(db *gorm.DB) (list []entity.Book, err error)
-	GetPaged(db *gorm.DB, pageReq dto.PaginationRequest) (list []dto.BookData, total int64, err error)
+	GetPaged(db *gorm.DB, pageReq request.PaginationRequest) (list []request.BookData, total int64, err error)
 	GetById(db *gorm.DB, id int64) (data entity.Book, err error)
 	Create(db *gorm.DB, newEntity entity.Book) (err error)
 	Update(db *gorm.DB, updatedEntity entity.Book) (err error)
@@ -39,9 +39,9 @@ func (repo *BookRepo) GetAll(db *gorm.DB) (list []entity.Book, err error) {
 	return
 }
 
-func (repo *BookRepo) GetPaged(db *gorm.DB, pageReq dto.PaginationRequest) (list []dto.BookData, total int64, err error) {
+func (repo *BookRepo) GetPaged(db *gorm.DB, pageReq request.PaginationRequest) (list []request.BookData, total int64, err error) {
 	data, total, err := repo.baseRepo.GetPagedData(db, pageReq)
-	list = []dto.BookData{}
+	list = []request.BookData{}
 	for _, v := range data {
 		list = append(list, *v.ToResponse())
 	}

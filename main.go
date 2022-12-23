@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"go-best-practice/src/config"
-	"go-best-practice/src/models/dto"
-	"go-best-practice/src/models/entity"
+	"go-best-practice/internal/config"
+	"go-best-practice/internal/entity"
+	"go-best-practice/internal/request"
 	"time"
 )
 
@@ -18,7 +18,7 @@ func main() {
 	newBook.CreateDt = time.Now()
 	newBook.UpdateDt = time.Now()
 
-	Test[*entity.Book, *dto.BookData](&newBook)
+	Test[*entity.Book, *request.BookData](&newBook)
 
 	server := config.InitServer()
 

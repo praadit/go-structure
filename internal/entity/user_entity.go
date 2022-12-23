@@ -1,8 +1,8 @@
 package entity
 
 import (
-	"go-best-practice/src/models/dto"
-	"go-best-practice/src/utilities"
+	"go-best-practice/internal/request"
+	"go-best-practice/internal/utilities"
 )
 
 type User struct {
@@ -14,8 +14,8 @@ type User struct {
 	BaseTimeEntity
 }
 
-func (en *User) ToResponse() (response *dto.UserData) {
-	response = &dto.UserData{
+func (en *User) ToResponse() (response *request.UserData) {
+	response = &request.UserData{
 		Username: en.Username,
 		Password: en.Password,
 	}

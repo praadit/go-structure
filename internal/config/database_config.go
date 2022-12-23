@@ -2,8 +2,8 @@ package config
 
 import (
 	"fmt"
-	"go-best-practice/src/models/entity"
-	"go-best-practice/src/utilities"
+	"go-best-practice/internal/entity"
+	"go-best-practice/internal/utilities"
 	"log"
 	"os"
 	"time"

@@ -1,8 +1,8 @@
 package entity
 
 import (
-	"go-best-practice/src/models/dto"
-	"go-best-practice/src/utilities"
+	"go-best-practice/internal/request"
+	"go-best-practice/internal/utilities"
 )
 
 type Book struct {
@@ -16,8 +16,8 @@ type Book struct {
 	Author User `gorm:"foreign_key:author_id"`
 }
 
-func (en *Book) ToResponse() (response *dto.BookData) {
-	response = &dto.BookData{
+func (en *Book) ToResponse() (response *request.BookData) {
+	response = &request.BookData{
 		BookName: en.BookName,
 	}
 

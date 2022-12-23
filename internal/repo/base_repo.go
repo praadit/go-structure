@@ -3,8 +3,8 @@ package repos
 import (
 	"errors"
 	"fmt"
-	"go-best-practice/src/models/dto"
-	"go-best-practice/src/utilities"
+	"go-best-practice/internal/request"
+	"go-best-practice/internal/utilities"
 	"strings"
 
 	"gorm.io/gorm"
@@ -17,7 +17,7 @@ type BaseRepository[T any] struct {
 	searchable []string
 }
 
-func (repo *BaseRepository[T]) GetPagedData(db *gorm.DB, pagReq dto.PaginationRequest) (entity []T, total int64, err error) {
+func (repo *BaseRepository[T]) GetPagedData(db *gorm.DB, pagReq request.PaginationRequest) (entity []T, total int64, err error) {
 	orderBy := strings.ToLower(pagReq.OrderBy)
 	if !utilities.Contains(repo.orderable, orderBy) {
 		err = gorm.ErrInvalidField
