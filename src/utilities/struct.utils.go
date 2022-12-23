@@ -25,3 +25,13 @@ func ToMap(data any) (map[string]interface{}, error) {
 
 	return structMap, err
 }
+
+func KeyToSnakeCase(data map[string]interface{}) (result map[string]interface{}) {
+	result = make(map[string]interface{})
+	for k, v := range data {
+		formatedKey := ToSnakeCase(k)
+		result[formatedKey] = v
+	}
+
+	return
+}

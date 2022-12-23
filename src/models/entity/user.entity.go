@@ -24,10 +24,42 @@ func (en *User) ToResponse() (response *dto.UserData) {
 }
 
 func (en *User) ToUpdatable() (updatable map[string]interface{}) {
-	updatable, err := utilities.ToMap(en)
+	rawMap, err := utilities.ToMap(en)
 	if err != nil {
 		panic(err)
 	}
+	updatable = utilities.KeyToSnakeCase(rawMap)
+	delete(updatable, "id")
+	delete(updatable, "delete_dt")
+
+	return
+}
+func (en *User) ToOrderable() (orderable []string) {
+	rawMap, err := utilities.ToMap(en)
+	if err != nil {
+		panic(err)
+	}
+	fields := utilities.KeyToSnakeCase(rawMap)
+	delete(fields, "password")
+	delete(fields, "delete_dt")
+
+	orderable = utilities.GetMapKeys(fields)
+
+	return
+}
+
+func (en *User) ToSearchable() (searchable []string) {
+	rawMap, err := utilities.ToMap(en)
+	if err != nil {
+		panic(err)
+	}
+	fields := utilities.KeyToSnakeCase(rawMap)
+	delete(fields, "password")
+	delete(fields, "created_at")
+	delete(fields, "updated_at")
+	delete(fields, "delete_dt")
+
+	searchable = utilities.GetMapKeys(fields)
 
 	return
 }

@@ -10,3 +10,10 @@ func Contains[T comparable](slice []T, search T) (found bool) {
 	}
 	return
 }
+
+func GetMapKeys[T comparable](maps map[T]interface{}) (slice []T) {
+	for key := range maps {
+		slice = append(slice, key)
+	}
+	return
+}
