@@ -30,7 +30,7 @@ type RedisConf struct {
 }
 
 func InitConfig() *AppConfig {
-	file, err := ioutil.ReadFile("./cred/appconfig.json")
+	file, err := ioutil.ReadFile("./cred/appconfig.{env}.json")
 	if err != nil {
 		panic(err)
 	}
